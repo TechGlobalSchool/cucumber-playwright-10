@@ -4,9 +4,9 @@ module.exports = {
   // Default configuration for the Cucumber framework
   // Ex. your feature file, runner and some test configurations
   default: {
-    paths: ["features/**/*.feature"],
+    paths: ['features/**/*.feature'],
     formatOptions: {
-      snippetInterface: "async-await",
+      snippetInterface: 'async-await',
       theme: {
         ...DEFAULT_THEME,
         // 'step text': 'cyan'
@@ -14,13 +14,14 @@ module.exports = {
       colorsEnabled: true, 
     },
     format: [
-      "html:reports/cucumber-report.html",
-      "summary",
+      'html:reports/cucumber-report.html',
+      'summary',
       // "progress-bar",
-      "@cucumber/pretty-formatter"
+      '@cucumber/pretty-formatter'
     ],
+    dryRun: false,
     // Required JS files before runnin steps
     // Includes step definitions and any setup files needed for your test
-    require: ["step-definitions/**/*.js", "setup/*.js"],
+    require: ['step-definitions/**/*.js', 'setup/*.js'],
   },
-};
+}

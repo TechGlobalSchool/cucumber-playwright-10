@@ -12,10 +12,10 @@ const {
 setDefaultTimeout(60 * 1000);
 
 const options = {
-	headless: false,
-	retries: 1,
-	video: 'on'
-}
+  headless: false,
+  retries: 1,
+  video: "on",
+};
 
 BeforeAll(async function () {
   global.browser = await chromium.launch(options);
