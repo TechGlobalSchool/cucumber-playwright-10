@@ -8,20 +8,20 @@ module.exports = {
     formatOptions: {
       snippetInterface: 'async-await',
       theme: {
-        ...DEFAULT_THEME,
+        ...DEFAULT_THEME
         // 'step text': 'cyan'
       },
-      colorsEnabled: true, 
+      colorsEnabled: true
     },
     format: [
       'html:reports/cucumber-report.html',
-      'summary',
-      // "progress-bar",
+      // 'summary'
+      'progress-bar',
       '@cucumber/pretty-formatter'
     ],
     dryRun: false,
     // Required JS files before runnin steps
     // Includes step definitions and any setup files needed for your test
-    require: ['step-definitions/**/*.js', 'setup/*.js'],
-  },
+    require: ['step-definitions/**/*.js', 'setup/*.js']
+  }
 }

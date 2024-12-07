@@ -1,0 +1,77 @@
+12-07-2024 - Cucumber Playwright Recap and Practice
+
+
+	Example of Test Case
+
+	1. Navigate to TechGlobal
+	2. From there, navigate to frontend page
+	3. On the frontend page, click on the HTML Elements
+	4. And enter your username and password
+
+
+
+
+	What is BDD ?
+
+		It's a type of testing framework that is extended from TDD. Purpose of BDD framework to create and explicitly outline the user behaviours step by step during the test.
+
+		With this approach, it closes the gap between technical and non-technical members in the team.
+
+		Unlike TDD framework, in BDD we have one more layer and it is where we define the user behaviours ( feature file.) These are written in the Gherkin Language, and aims to explain in details of user behaviour step-by-step.
+
+		Then user validates input box is visible
+		And user types "TechGlobal"
+
+		And I validate the email input box with "TechGlobal" on the Login page
+		And I update the email input box with "TechGlobal" on the Login Page
+
+
+		Given user navigates to "someUrl"
+		Then I update the email input box with "TechGlobal" on the Login Page
+		And I update the password input box with "TechGlobal" on the Login Page
+
+
+		The Components of Cucumber Framework
+
+			1. Feature File
+
+				It's a place where we write our Test Cases in Gherkin format and document them.
+
+				Keywords:
+
+				- Feature: High Level Description of our test file
+				- Scenario: Name of the test case
+				- Steps: Each step in the scenario where it defines the user behaviour
+
+				- Given => Pre condition
+				- When 	=> User Action
+				- Then 	=> Outcome of the user action
+				- And 	=> When user wants to group two or more When or Then keywords.
+
+
+			2. Step Definitions
+
+				It's a code representation of each step we have in the feature file that is directly LINKED.
+
+			3. Runner ( cucumber.js file )
+
+				For Cypress Integration with Cucumber, we still maintain Cypress as min runner, not Cucumber.
+
+				On the other hand with Playwright, we will have cucumber.js as a runner file.
+
+
+			What is the execution point on the Cucumber test ?
+
+			Runner.
+
+			What is the dryRun in the Cucumber?
+
+			dryRun is an option we can define inside the cucumber.js, that will run all the feature files in the framework. Purpose of dryRun is not to run tests, instead it doesn't run any tests. It just runs to find if we have any undefined steps.
+
+
+
+
+
+
+
+

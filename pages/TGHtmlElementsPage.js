@@ -6,7 +6,10 @@ const locators = Object.freeze({
   secondDropdown: '#company_dropdown2',
   textInputOne: '#text_input1',
   textInputOTwo: '#text_input2',
-  inputBoxes: '#text_input1, #text_input2'
+  inputBoxes: '#text_input1, #text_input2',
+  appleCheckbox: '#checkbox_1',
+  microsoftCheckbox: '#checkbox_2',
+  teslaCheckbox: '#checkbox_3'
 })
 
 class TGHtmlElementsPage {
@@ -17,8 +20,8 @@ class TGHtmlElementsPage {
   }
 
   /**
-   * This method returns the drodpown locator directly as Playwright Locator object.
-   * 
+   * This method returns the dropdown locator directly as Playwright Locator object.
+   *
    * @param {string} dropdown - The dropdown name (first, second)
    * @returns {import("@playwright/test").Locator} - The Playwright Locator for the dropdown
    */
@@ -28,17 +31,16 @@ class TGHtmlElementsPage {
       second: locators.secondDropdown
     }
 
-    const locator = dropdownLocators[dropdown]
-    if(!locator) {
+    if (!(dropdown in dropdownLocators)) {
       throw new Error(`Dropdown "${dropdown}" is not recognized.`)
     }
 
-    return page.locator(locator)
+    return page.locator(dropdownLocators[dropdown])
   }
 
   /**
-   * This emthod selects an option from the dropdown
-   * 
+   * This method selects an option from the dropdown
+   *
    * @param {string} dropdown - The dropdown name (first, second)
    * @param {string} option - The option label to select.
    */
@@ -48,13 +50,32 @@ class TGHtmlElementsPage {
   }
 
   getInputboxByIndex(index) {
-    const realIndex = Number(index) -1
+    const realIndex = Number(index) - 1
     return page.locator(locators.inputBoxes).nth(realIndex)
   }
 
   async enterTextInputbox(index, input) {
     const $inputbox = this.getInputboxByIndex(index)
     await $inputbox.fill(input)
+  }
+
+  /**
+   *
+   * @param {"Apple" | "Microsoft" | "Tesla"} label
+   * @returns {import("@playwright/test").Locator} - The Playwright Locator for the checkbox
+   */
+  getCheckboxByLabel(label) {
+    const checkboxes = {
+      Apple: locators.appleCheckbox,
+      Microsoft: locators.microsoftCheckbox,
+      Tesla: locators.teslaCheckbox
+    }
+
+    if (!(label in checkboxes)) {
+      throw new Error(`${label} not found`)
+    }
+
+    return page.locator(checkboxes[label])
   }
 }
 
