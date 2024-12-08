@@ -1,3 +1,4 @@
+@regression
 Feature: Interactions with TechGlobal HTML Elements page
 
   As a user

@@ -8,8 +8,9 @@ export default [
     languageOptions: {
       sourceType: 'commonjs',
       globals: {
-        page: 'readonly'
-      },
+        page: 'readonly',
+        console: 'readonly'
+      }
     },
     plugins: {
       prettier: prettierPlugin
