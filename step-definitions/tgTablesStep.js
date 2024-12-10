@@ -62,3 +62,52 @@ Then(/^user should see the table data with the following order$/, async function
     }
   }
 })
+
+Then(/^user should fill the form as key-value pairs$/, async function (dataTable) {
+  /**
+   * dataTable.rowsHash() transfroms the data table into a simple JavaScript object
+   * where each row's first cell is used as a key and the second cell as its value.
+   *
+   * {
+   *   "First Name": "Techglobal",
+   *   "Last Name": "School",
+   *   "From": "U.S.",
+   *   "Live": "Chicago"
+   * }
+   */
+
+  const keyValue = dataTable.rowsHash()
+
+  // console.log(keyValue)
+
+  console.log(JSON.stringify(keyValue, null, 2))
+
+  for (const key in keyValue) {
+    console.log(key)
+    console.log(keyValue[key])
+  }
+})
+
+Then(/^user should handle input form with objects$/, async function (dataTable) {
+  /**
+   * dataTable.hashes() converts your table into an array of objects, where each object represents a single row.
+   * The first row of the table is used as the header (keys for the objects), and rows below header become objects
+   * where each column's data is matched to a header key.
+   *
+   * [
+   *  { label: 'First Name', input: 'TechGlobal', error: 'false characters' },
+   *  { label: 'Last Name', input: 'School', error: 'wrong lastname ' },
+   *  { label: 'From', input: 'U.S.', error: 'Short Characters' },
+   *  { label: 'Live', input: 'Chicago', error: 'Wrong Address' }
+   * ]
+   */
+  const inputs = dataTable.hashes()
+
+  console.log(JSON.stringify(inputs, null, 2))
+
+  inputs.forEach((input) => {
+    console.log(input.label)
+    console.log(input.input)
+    console.log(input.error)
+  })
+})

@@ -7,6 +7,8 @@ const locators = Object.freeze({
   textInputOne: '#text_input1',
   textInputOTwo: '#text_input2',
   inputBoxes: '#text_input1, #text_input2',
+  dateInputOne: '#date_input1',
+  dateInputTwo: '#date_input2',
   appleCheckbox: '#checkbox_1',
   microsoftCheckbox: '#checkbox_2',
   teslaCheckbox: '#checkbox_3'
@@ -32,7 +34,8 @@ class TGHtmlElementsPage {
     }
 
     if (!(dropdown in dropdownLocators)) {
-      throw new Error(`Dropdown "${dropdown}" is not recognized.`)
+      // throw new Error(`Dropdown "${dropdown}" is not recognized.`)
+      return page.locator(dropdown)
     }
 
     return page.locator(dropdownLocators[dropdown])
@@ -76,6 +79,37 @@ class TGHtmlElementsPage {
     }
 
     return page.locator(checkboxes[label])
+  }
+
+  async enterDateInput(locator, date) {
+    const $dateInput = page.locator(locator)
+    await $dateInput.fill(date)
+  }
+
+  async htmlElementsPageInputHandler(label, value) {
+    switch (label) {
+      case 'Text Input 1':
+        await this.enterTextInputbox(1, value)
+        break
+      case 'Text Input 2':
+        await this.enterTextInputbox(2, value)
+        break
+      case 'Date Input 1':
+        await this.enterDateInput(locators.dateInputOne, value)
+        break
+      case 'Date Input 2':
+        await this.enterDateInput(locators.dateInputTwo, value)
+        break
+      case 'Dropdown 1':
+        await this.selectOptionFromDropdown(locators.firstDropdown, value)
+        break
+      case 'Dropdown 2':
+        await this.selectOptionFromDropdown(locators.secondDropdown, value)
+        break
+      default: {
+        throw new Error(`Unknown label: ${label}`)
+      }
+    }
   }
 }
 

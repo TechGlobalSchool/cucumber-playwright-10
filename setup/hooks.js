@@ -3,7 +3,7 @@ const { Before, After, AfterAll, BeforeAll, Status, setDefaultTimeout } = requir
 setDefaultTimeout(60 * 1000)
 
 const options = {
-  headless: false,
+  headless: true,
   retries: 1,
   video: 'on'
 }

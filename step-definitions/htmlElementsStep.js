@@ -74,3 +74,13 @@ Then('the {string} checkbox remains unchecked', async function (label) {
   const $checkbox = tgHtmlElementsPage.getCheckboxByLabel(label)
   await expect($checkbox).not.toBeChecked()
 })
+
+Then(/^I update below input fields and their given values$/, async function (dataTable) {
+  const dataRows = dataTable.hashes()
+
+  for (const row of dataRows) {
+    console.log(row.label)
+    console.log(row.input)
+    await tgHtmlElementsPage.htmlElementsPageInputHandler(row.label, row.input)
+  }
+})
